@@ -18,7 +18,7 @@
 - Используя ansible обновляем все машины <br>
 - На k8s машинах устанавливаем microk8s, добавляем worker ноду, ставим Helm <br>
 - На srv: устанавливаем docker, добавляем права для использования без рута, устанавливаем gitlab runner и подключаем его к нашему проекту на gitlab <br>
-<img src="https://github.com/mordgren/diplom/blob/main/images/tarraform.PNG">
-<img src="https://github.com/mordgren/diplom/blob/main/images/ansible_1.PNG">
-<img src="https://github.com/mordgren/diplom/blob/main/images/ansible_2.PNG">
+<img src="https://github.com/mordgren/diplom/blob/main/images/tarraform.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/ansible_1.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/ansible_2.png">
 <H3>Спринт 1 готов</H3>
