@@ -24,3 +24,8 @@
 <img src="https://github.com/mordgren/diplom/blob/main/images/ansible_2.png">
 <H3>Спринт 1 готов</H3>
 <h1> Спринт 2. </h1>
+<img src="https://github.com/mordgren/diplom/blob/main/images/vars.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/dockerhub.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/cicd.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/getpods.png">
+<H3>Спринт 2 готов</H3>
