@@ -33,4 +33,8 @@ https://gitlab.com/mordgren1/diplom <br>
 
 <h1> Спринт 3. </h1>
 Стек Fluentd/Clickhouse/Loghouse развернут в кластере через Helm
+<img src="https://github.com/mordgren/diplom/blob/main/images/loghouse.png">
 Далее стек Grafana\Prometheus\Blackbox\Node Exporter\Alertmanager
+<img src="https://github.com/mordgren/diplom/blob/main/images/dash1.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/dash2.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/dash3.png">
