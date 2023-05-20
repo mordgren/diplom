@@ -30,3 +30,7 @@
 <img src="https://github.com/mordgren/diplom/blob/main/images/getpods.png">
 https://gitlab.com/mordgren1/diplom <br>
 <H3>Спринт 2 готов</H3>
+
+<h1> Спринт 3. </h1>
+Стек Fluentd/Clickhouse/Loghouse развернут в кластере через Helm
+Далее стек Grafana\Prometheus\Blackbox\Node Exporter\Alertmanager
