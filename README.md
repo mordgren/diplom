@@ -28,7 +28,7 @@
 <img src="https://github.com/mordgren/diplom/blob/main/images/dockerhub.png">
 <img src="https://github.com/mordgren/diplom/blob/main/images/cicd.png">
 <img src="https://github.com/mordgren/diplom/blob/main/images/getpods.png">
-https://gitlab.com/mordgren1/diplom <br>
+<H1> https://gitlab.com/mordgren1/diplom  <H1> <br>
 <H3>Спринт 2 готов</H3>
 
 <h1> Спринт 3. </h1>
