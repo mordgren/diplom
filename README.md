@@ -36,6 +36,6 @@ https://gitlab.com/mordgren1/diplom <br>
 <img src="https://github.com/mordgren/diplom/blob/main/images/loghouse.png">
 Далее стек Grafana\Prometheus\Blackbox\Node Exporter\Alertmanager
 <img src="https://github.com/mordgren/diplom/blob/main/images/dash1.png">
-<img src="https://github.com/mordgren/diplom/blob/main/images/dash2.png">
+<img src="https://github.com/mordgren/diplom/blob/main/images/dash22.png">
 <img src="https://github.com/mordgren/diplom/blob/main/images/dash3.png">
 <img src="https://github.com/mordgren/diplom/blob/main/images/bot.png">
