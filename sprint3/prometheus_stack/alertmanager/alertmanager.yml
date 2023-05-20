@@ -1,0 +1,11 @@
+route:
+  receiver: 'alertmanager-bot'
+  repeat_interval: 4h
+  group_by: [ alertname ]
+
+#Send to telegram
+receivers:
+- name: 'diplomalert-bot'
+  webhook_configs:
+  - send_resolved: true
+    url: 'http://alerttgrbot:8080'
