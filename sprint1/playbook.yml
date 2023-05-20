@@ -1,0 +1,105 @@
+- hosts: all
+  gather_facts: no
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: updating
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+
+- hosts: k8s
+  gather_facts: no
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: install microk8s
+    community.general.snap:
+      name: microk8s
+      channel: 1.27
+      classic: true
+  - name: usermod
+    ignore_errors: true
+    become: false
+    ansible.builtin.shell:
+      cmd: sudo mkdir ~/.kube && sudo usermod -aG microk8s ubuntu && sudo chown -R ubuntu ~/.kube
+  - name: reset ssh connection to allow user changes to affect ansible user
+    ansible.builtin.meta:
+      reset_connection
+
+- hosts: k8smaster
+  gather_facts: no
+  remote_user: ubuntu
+#  become: yes
+  tasks:
+  - name: get token
+    ansible.builtin.shell:
+      cmd: microk8s add-node >> join && awk '/worker$/' join >> join.sh && sed -i '1i#!/bin/bash' join.sh
+  - name: get join command
+    ansible.builtin.fetch:
+      src: /home/ubuntu/join.sh
+      dest: /home/mordgren/
+      flat: yes
+
+- hosts: k8sapps
+  gather_facts: no
+  remote_user: ubuntu
+#  become: yes
+  tasks:
+  - name: copy join script
+    ansible.builtin.copy:
+      src: /home/mordgren/join.sh
+      dest: /home/ubuntu/join.sh
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'
+  - name: join worker
+    shell: /home/ubuntu/join.sh
+
+- hosts: k8smaster
+  gather_facts: no
+  remote_user: ubuntu
+#  become: yes
+  tasks:
+  - name: install helm
+    ansible.builtin.shell:
+      cmd: curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod 700 get_helm.sh && ./get_helm.sh
+      chdir: /home/ubuntu/
+
+- hosts: srv
+  gather_facts: no
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: copy script
+    ansible.builtin.copy:
+      src: ./dock.sh
+      dest: /home/ubuntu
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'
+  - name: install docker
+    shell: /home/ubuntu/dock.sh
+  - name: newgrp docker
+    ignore_errors: true
+    shell: sudo groupadd docker && sudo usermod -aG docker ubuntu
+  - name: reset ssh connection to allow user changes to affect ansible user
+    ansible.builtin.meta:
+      reset_connection
+  - name: gitlab runner repo
+    shell: curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+  - name: install gitlab runner
+    ansible.builtin.apt:
+      name: gitlab-runner
+      update_cache: yes
+  - name: copy script
+    ansible.builtin.copy:
+      src: ./sudorunner.sh
+      dest: /home/ubuntu
+      owner: ubuntu
+      group: ubuntu
+      mode: '0777'
+  - name: sudo permissions to gitlab runner
+    shell: /home/ubuntu/sudorunner.sh
+  - name: auth to container registry
+    shell: sudo gitlab-runner register --non-interactive --executor 'shell' --url 'https://gitlab.com/' --registration-token GR13489419_gAqxHyRfZp2AybA5sD && sudo gitlab-runner verify
